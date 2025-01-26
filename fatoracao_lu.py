@@ -1,6 +1,12 @@
 from eliminacao_gauss import resolucao_sistema
 
 
+def print_matriz(Matriz: list, comentario: str):
+    print(comentario)
+    for i in range(len(Matriz)):
+        print(Matriz[i])
+
+
 def identity(N):
     I = [None] * N
     for j in range(N):
@@ -46,7 +52,7 @@ def lu(A: list):
     return A, p
 
 
-def resolucao_Ly(p: list, b: list):
+def resolucao_Pb(p: list, b: list):
     n = len(p)
     Pb = []
     for i in range(n):
@@ -57,25 +63,16 @@ def resolucao_Ly(p: list, b: list):
     
     return Pb
 
-def resolucao_y(Ly: list, Pb: list):
-    n = len(Ly)
-    y = [None] * n
-    variables = [1] * n
+def resolucao_y(Lower, Pb):
+    n = len(Lower)
+    y = [0] * n
     for i in range(n):
-        line = 0
-        for j in range(n):
-            if i != j:
-                line += Ly[i][j]*variables[j]
-        if line < 0:
-            line = abs(line) + Pb[i]
-        else:
-            line += Pb[i]
-
-        # line += Pb[i] # -2
-        variables[i] = line # [-2]
-        y[i] = line # -2
-
+        line = Pb[i]
+        for j in range(i):
+            line -= Lower[i][j] * y[j]
+        y[i] = line
     return y
+
 
 
 def divide_matriz(A: list):
@@ -90,16 +87,19 @@ def divide_matriz(A: list):
     
     return Upper, Lower
 
+# A = [[2, 1, 1, 0],[4, 3, 3, 1],[8, 7, 9, 5], [6, 7, 9, 8]]
+# b = [1, 2, 4, 5]
+
 A = [[3, -4, 1],[1, 2, 2],[4, 0, -3]]
 b = [9, 3, -2]
 
 A, p = lu(A)
+print_matriz(A, "A:")
+print_matriz(p, "p:")
 Upper, Lower = divide_matriz(A)
-
-
-print(15*"-")
-
-Pb = resolucao_Ly(p, b)
+print_matriz(Upper, "Upper:")
+print_matriz(Lower, "Lower:")
+Pb = resolucao_Pb(p, b)
 print("Pxb: ", Pb)
 y = resolucao_y(Lower, Pb)
 print("y: ", y)
