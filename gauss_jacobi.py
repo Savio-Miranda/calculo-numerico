@@ -26,7 +26,7 @@ def gauss_jacobi(A: list, b: list, x: list, erro: float, niter: int):
         xk = np.dot(H, x) + g
         dif = xk -x
         maxd = max(min(dif), max(dif, key=abs))
-        maxxk = max(min(xk), max(xk), key=abs)
+        maxxk = max(min(xk), max(xk, key=abs))
         e = abs(maxd)/abs(maxxk)
         k += 1
         x = xk
