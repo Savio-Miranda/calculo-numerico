@@ -9,20 +9,20 @@ b = np.array([7, -8, 6])
 
 x = [0, 0, 0]
 
-def gauss_jacobi(A: list, b: list, x: list, erro: float, niter: int):
+def gauss_jacobi(A: list, b: list, x: list, erro: float, max_iter: int):
     linha, coluna = A.shape
     H = np.zeros((linha, coluna))
     g = np.zeros(coluna)
 
 
-    for i in list(range(0, linha)):
+    for i in range(0, linha):
         H[i, :] = -A[i,:]/A[i, i]
         g[i] = b[i]/A[i, i]
         H[i, i] = 0
 
     k = 0
     e = 1
-    while e > erro and k < niter:
+    while e > erro and k < max_iter:
         xk = np.dot(H, x) + g
         dif = xk -x
         maxd = max(min(dif), max(dif, key=abs))
