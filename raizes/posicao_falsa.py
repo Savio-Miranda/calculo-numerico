@@ -2,14 +2,13 @@ import math
 from achar_raiz import hunt_root
 
 
-def regula_falsi(a: float, b: float, e: float, max_iter: int, f = lambda x: ...):
+def position_falsi(a: float, b: float, max_iter: int, e: float, f = lambda x: ...):
     f0 = f(a)
     f1 = f(b)
 
     # Verificar se os palpites iniciais são válidos
     if f0 * f1 > 0:
-        print("Palpites iniciais incorretos. As raízes não estão contidas no intervalo fornecido.")
-        return None
+        raise "Palpites iniciais incorretos. As raízes não estão contidas no intervalo fornecido."
 
     x = 0
 
@@ -33,9 +32,11 @@ def regula_falsi(a: float, b: float, e: float, max_iter: int, f = lambda x: ...)
     return x
 
 
-f = lambda x: (x**math.log(x)) + x**2 + x**3 * math.sin(x)
-intervalos = hunt_root(f, 1, 20)
+# EXEMPLO DE USO
 
-for a, b in intervalos:
-    raiz = regula_falsi(a, b, 0.00001, 1000, f)
-    print(f"A raiz encontrada no intervalo [{a},{b}] é: {raiz}")
+# f = lambda x: (x**math.log(x)) + x**2 + x**3 * math.sin(x)
+# intervalos = hunt_root(1, 20, f)
+
+# for a, b in intervalos:
+#     raiz = position_falsi(a, b, 1000, 0.00001, f)
+#     print(f"A raiz encontrada no intervalo [{a},{b}] é: {raiz}")

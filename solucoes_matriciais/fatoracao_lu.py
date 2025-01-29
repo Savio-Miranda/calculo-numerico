@@ -31,8 +31,7 @@ def lu(A: list):
                 r = i
         
         if pivot == 0:
-            print("A MATRIZ É SINGULAR")
-            return
+            raise "A MATRIZ É SINGULAR"
         
         if r != k:
             aux = p[k]

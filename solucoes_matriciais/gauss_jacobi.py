@@ -24,7 +24,7 @@ def gauss_jacobi(A: list, b: list, x: list, erro: float, max_iter: int):
     e = 1
     while e > erro and k < max_iter:
         xk = np.dot(H, x) + g
-        dif = xk -x
+        dif = xk - x
         maxd = max(min(dif), max(dif, key=abs))
         maxxk = max(min(xk), max(xk, key=abs))
         e = abs(maxd)/abs(maxxk)
