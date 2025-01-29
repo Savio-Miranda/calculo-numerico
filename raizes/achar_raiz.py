@@ -116,7 +116,3 @@ def find_root(vetor: list, erro: float, menor_x: int = -10, maior_x: int = 10):
 # EXEMPLO DE USO
 # intervals = hunt_root(1, 20, lambda x: (x**math.log(x)) + x**2 + x**3 * math.sin(x))
 # print("intervalos: ", intervals)
-
-derivada = lambda x: -math.sin(x)
-
-print(hunt_critical_points(-4, 4, derivada))
