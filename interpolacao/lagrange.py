@@ -1,3 +1,5 @@
+# USAR INTERPOLAÇÃO SOMENTE PARA VALORES DENTRO DO INTERVALO DE X
+
 def lagrange(X: list, Y: list, x: int):
     result = 0
     n = len(X)
