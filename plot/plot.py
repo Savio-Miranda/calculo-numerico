@@ -1,10 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot(coefs: list, X: list, Y: list, f):
+def plot(coefs: list, X: list, Y: list, f, a: int, b: int):
     # Geração dos valores de x de -5 a 5
-    x_vals = np.linspace(-5, 5, 100)
-    y_vals = f(x_vals)
+    x_vals = np.linspace(a, b, 100)
+    y_vals = [f(x, *coefs) for x in x_vals]
+
 
     # Plotando o gráfico
     plt.figure(figsize=(8, 5))

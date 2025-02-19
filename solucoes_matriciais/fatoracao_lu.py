@@ -1,4 +1,16 @@
-from eliminacao_gauss import gauss
+def gauss(A: list, b: list):
+    n = len(b) - 1
+    x = []
+    for i in range(n + 1):
+        x.append(None)
+    
+    x[n] = b[n] / A[n][n]
+    for k in range(n, -1, -1):
+        s = 0
+        for j in range(k + 1, n + 1):
+            s += A[k][j] * x[j]
+        x[k] = (b[k] - s) / A[k][k]
+    return x
 
 
 def print_matriz(Matriz: list, comentario: str):
@@ -14,8 +26,8 @@ def identity(N):
         for k in range(N):
             I[j][k] = 0
         I[j][j] = 1
+    return I
 
-    return I;
 
 def lu(A: list):
     n = len(A)
@@ -25,7 +37,7 @@ def lu(A: list):
         pivot = abs(A[k][k])
         r = k
         
-        for i in range(k+1, n):
+        for i in range(k + 1, n):
             if abs(A[i][k]) > pivot:
                 pivot = abs(A[i][k])
                 r = i
@@ -42,11 +54,11 @@ def lu(A: list):
                 A[k][j] = A[r][j]
                 A[r][j] = aux
 
-        for i in range(k+1, n):
-            m = A[i][k]/A[k][k]
+        for i in range(k + 1, n):
+            m = A[i][k] / A[k][k]
             A[i][k] = m
-            for j in range(k+1, n):
-                A[i][j] -= m*A[k][j]
+            for j in range(k + 1, n):
+                A[i][j] -= m * A[k][j]
 
     return A, p
 
@@ -59,8 +71,8 @@ def resolucao_Pb(p: list, b: list):
         for j in range(n):
             line += p[i][j] * b[j]
         Pb.append(line)
-    
     return Pb
+
 
 def resolucao_y(Lower, Pb):
     n = len(Lower)
@@ -73,7 +85,6 @@ def resolucao_y(Lower, Pb):
     return y
 
 
-
 def divide_matriz(A: list):
     n = len(A)
     Upper = A
@@ -83,24 +94,23 @@ def divide_matriz(A: list):
             if i > j:
                 Lower[i][j] = A[i][j]
                 Upper[i][j] = 0
-    
     return Upper, Lower
 
-# A = [[2, 1, 1, 0],[4, 3, 3, 1],[8, 7, 9, 5], [6, 7, 9, 8]]
-# b = [1, 2, 4, 5]
 
-A = [[3, -4, 1],[1, 2, 2],[4, 0, -3]]
-b = [9, 3, -2]
-
-A, p = lu(A)
-print_matriz(A, "A:")
-print_matriz(p, "p:")
-Upper, Lower = divide_matriz(A)
-print_matriz(Upper, "Upper:")
-print_matriz(Lower, "Lower:")
-Pb = resolucao_Pb(p, b)
-print("Pxb: ", Pb)
-y = resolucao_y(Lower, Pb)
-print("y: ", y)
-x = gauss(Upper, y) # corrigir o gauss para LU... Ante era resolução de sistema
-print("x: ", x)
+def resolver_sistema_lu(A: list, b: list):
+    # 1. Fatoração LU com pivoteamento
+    A_fatorada, p = lu(A)
+    
+    # 2. Divide a matriz fatorada em L e U
+    Upper, Lower = divide_matriz(A_fatorada)
+    
+    # 3. Resolve Pb
+    Pb = resolucao_Pb(p, b)
+    
+    # 4. Resolve Ly = Pb
+    y = resolucao_y(Lower, Pb)
+    
+    # 5. Resolve Ux = y
+    x = gauss(Upper, y)
+    
+    return x

@@ -1,6 +1,4 @@
 # PODE-SE USAR PARA ALÉM DO INTERVALO DE X
-import math
-
 
 def get_a(X: list, Y: list):
     n = len(X)
@@ -57,16 +55,3 @@ def ajustar_curva(X: list, f):
         new_values_of_x.append(f(X[i]))
     
     return new_values_of_x
-
-
-X = [1, 2, 3, 4]
-Y = [3, 5, 6, 8]
-f = lambda x: math.log(x) # logaritmico, exemplo: y = a*ln(x) + b
-g = lambda y: math.log(y) # exponencial, exemplo y = b*e^(ax)
-h = lambda y: math.log(y) # potẽncia, exemplo: y = b*x^a
-
-X = ajustar_curva(X, f)
-Y = ajustar_curva(Y, g)
-
-result = minimos_quadrados_linear(X, Y, 1)
-print(result)
