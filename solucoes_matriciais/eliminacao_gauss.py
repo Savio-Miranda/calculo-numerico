@@ -1,4 +1,4 @@
-def gauss(A: list, b: list):
+def get_A_gauss(A: list, b: list):
     n = len(b) - 1 # b tem tamanho n, mas começamos em 0, logo, len(b) - 1 = n - 1
     for j in range(n):
         for i in range(j+1, n+1):
@@ -11,7 +11,8 @@ def gauss(A: list, b: list):
     return A
 
 
-def resolucao_sistema(A: list, b: list):
+def gauss(A: list, b: list):
+    A = get_A_gauss(A, b)
     n = len(b) - 1
     x = []
     for i in range(n + 1):

@@ -1,4 +1,4 @@
-from eliminacao_gauss import resolucao_sistema
+from eliminacao_gauss import gauss
 
 
 def print_matriz(Matriz: list, comentario: str):
@@ -102,5 +102,5 @@ Pb = resolucao_Pb(p, b)
 print("Pxb: ", Pb)
 y = resolucao_y(Lower, Pb)
 print("y: ", y)
-x = resolucao_sistema(Upper, y)
+x = gauss(Upper, y) # corrigir o gauss para LU... Ante era resolução de sistema
 print("x: ", x)
