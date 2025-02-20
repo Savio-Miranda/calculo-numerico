@@ -46,12 +46,3 @@ def minimos_quadrados_linear(X: list, Y: list, x):
     print(f"a: {a}, b: {b}")
     result = a*x + b
     return result
-
-
-def ajustar_curva(X: list, f):
-    n = len(X)
-    new_values_of_x = []
-    for i in range(n):
-        new_values_of_x.append(f(X[i]))
-    
-    return new_values_of_x
