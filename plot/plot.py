@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot(coefs: list, X: list, Y: list, f, a: int, b: int):
-    # Geração dos valores de x de -5 a 5
-    x_vals = np.linspace(a, b, 100)
-    y_vals = [f(x, *coefs) for x in x_vals]
 
+def plot(X: list, Y: list, f, a: int, b: int, label: str):
+    # Geração dos valores de x de a até b
+    x_vals = np.linspace(a, b, 100)
+    y_vals = [f(x) for x in x_vals]
 
     # Plotando o gráfico
     plt.figure(figsize=(8, 5))
@@ -23,7 +23,7 @@ def plot(coefs: list, X: list, Y: list, f, a: int, b: int):
     plt.legend()
     plt.xlabel("x")
     plt.ylabel("y")
-    plt.title("Gráfico da Função Não Linear")
+    plt.title(label)
     
     # Exibindo o gráfico
     plt.show()
