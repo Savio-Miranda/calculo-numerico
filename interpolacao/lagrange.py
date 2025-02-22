@@ -15,8 +15,3 @@ def lagrange(X: list, Y: list, x: int):
         result += Y[k] * Lj
     
     return result
-
-x = 8
-f_x = lagrange([1, 2, 3], [0, 1, 4], x)
-print(f"função para x = {x}: {(x**2)-(2*x)+1}")
-print(f_x)
