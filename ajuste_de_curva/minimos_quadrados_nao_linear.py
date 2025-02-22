@@ -35,6 +35,6 @@ def get_B(X, Y, functions):
 
 def minimos_quadrados_nao_lineares(X: list, Y: list, functions: list, solver) -> list:
     A = get_A(X, functions)
-    b = get_B(X, Y,  functions)
+    b = get_B(X, Y, functions)
     coefs = solver(A, b)
     return coefs
