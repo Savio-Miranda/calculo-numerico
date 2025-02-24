@@ -14,6 +14,9 @@ def get_A(X: list, functions: list):
             
             linhas.append(a)
         matriz.append(linhas)
+    
+    for linha in matriz:
+        print(linha)
 
     return matriz
 
@@ -37,4 +40,5 @@ def minimos_quadrados_nao_lineares(X: list, Y: list, functions: list, solver) ->
     A = get_A(X, functions)
     b = get_B(X, Y, functions)
     coefs = solver(A, b)
+    print("coefs: ", coefs)
     return coefs

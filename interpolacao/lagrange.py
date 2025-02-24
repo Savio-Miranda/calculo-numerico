@@ -16,11 +16,4 @@ def lagrange(X: list, Y: list, x: int):
         coefs.append(Lj)
         result += Y[k] * Lj
     
-    # print(f"coefs: {coefs}, len: {len(coefs)}")
     return result
-
-# X = [1, 3, 4]
-# Y = [2, 4, 3]
-
-# lagrange(X, Y, 4)
-

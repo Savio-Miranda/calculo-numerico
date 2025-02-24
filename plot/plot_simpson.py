@@ -1,17 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
 from interpolacao.lagrange import lagrange
 
 
-def plot_integral(X: list, Y: list, f, a: float, b: float, label: str):
+def plot(X: list, Y: list, a: float, b: float, integral: float, label: str):
     """
     X, Y para lagrange e "a" e "b" são intervalos de integração
     """
 
     x_vals = np.linspace(a, b, 100)
     y_vals = [lagrange(X, Y, x) for x in x_vals]
-    integral = f(X, Y, a, b)
 
     # Criando o gráfico
     plt.figure(figsize=(8, 5))
